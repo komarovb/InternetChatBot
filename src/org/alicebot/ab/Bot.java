@@ -59,7 +59,7 @@ public class Bot {
      */
     public void setAllPaths (String root, String name) {
         bot_path = root+"/bots";
-        bot_name_path = bot_path+"/"+name;
+        bot_name_path = bot_path+"/alice2";
         if (MagicBooleans.trace_mode) System.out.println("Name = "+name+" Path = "+bot_name_path);
         aiml_path = bot_name_path+"/aiml";
         aimlif_path = bot_name_path+"/aimlif";
