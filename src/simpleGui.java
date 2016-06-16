@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -23,6 +26,9 @@ import javax.swing.text.DefaultEditorKit;
 
 import org.alicebot.ab.MagicBooleans;
 import org.alicebot.ab.TestAB;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -113,7 +119,10 @@ public class simpleGui extends javax.swing.JFrame {
         showRes(urlStr, 1);
         boolean doWrites = true;
         String respond = TestAB.testChat(BotMain.bot, doWrites, MagicBooleans.trace_mode, urlStr);
+        //start gif here
         showRes(respond, 2);
+        //end here
+        
     }                                        
 
     private void clearListActionPerformed(java.awt.event.ActionEvent evt) {                                          
@@ -162,7 +171,24 @@ public class simpleGui extends javax.swing.JFrame {
                 new simpleGui().setVisible(true);
             }
         });
+        URL url = null;
+		try {
+			url = new URL("http://komarovb.com/gif/gif1.gif");
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        Icon icon = new ImageIcon(url);
+        JLabel label = new JLabel(icon);
+
+        JFrame f = new JFrame("Animation");
+        f.getContentPane().add(label);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.pack();
+        f.setLocationRelativeTo(null);
+        f.setVisible(true);
     }
+    
     public JMenuBar createMenuBar () {
         JMenuItem menuItem = null;
         JMenuBar menuBar = new JMenuBar();
