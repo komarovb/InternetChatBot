@@ -38,6 +38,8 @@ public class simpleGui extends javax.swing.JFrame {
     
     public ArrayList<URL> links;
     public ArrayList<URL> mediaLinks;
+    public URL url = null;
+    public JFrame f;
     private JList rowList;
     public BotMain bot;
     public static String[] args;
@@ -45,6 +47,31 @@ public class simpleGui extends javax.swing.JFrame {
      * Creates new form simpleGui
      */
     public simpleGui() {
+    	//Avatar
+    	try {
+			url = new URL("http://komarovb.com/gif/image.png");
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        Icon icon = new ImageIcon(url);
+        JLabel label = new JLabel(icon);
+
+        f = new JFrame("ZaBoYu");
+        f.setAlwaysOnTop (true);
+        f.getContentPane().add(label);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.pack();
+        f.setLocationRelativeTo(null);
+        f.setVisible(true);
+        try {
+			url = new URL("http://komarovb.com/gif/gif4.gif");
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	//------
+    	setTitle("YuZaBot");
         initComponents();
         links = new ArrayList<>();
         mediaLinks = new ArrayList<>();
@@ -120,6 +147,15 @@ public class simpleGui extends javax.swing.JFrame {
         boolean doWrites = true;
         String respond = TestAB.testChat(BotMain.bot, doWrites, MagicBooleans.trace_mode, urlStr);
         //start gif here
+        f.getContentPane().removeAll();
+        f.revalidate();
+        f.repaint();
+        Icon icon = new ImageIcon(url);
+        ((ImageIcon) icon).getImage().flush();
+        JLabel label = new JLabel(icon);
+        f.getContentPane().add(label);
+        f.revalidate();
+        f.repaint();
         showRes(respond, 2);
         //end here
         
@@ -171,22 +207,6 @@ public class simpleGui extends javax.swing.JFrame {
                 new simpleGui().setVisible(true);
             }
         });
-        URL url = null;
-		try {
-			url = new URL("http://komarovb.com/gif/gif1.gif");
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        Icon icon = new ImageIcon(url);
-        JLabel label = new JLabel(icon);
-
-        JFrame f = new JFrame("Animation");
-        f.getContentPane().add(label);
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.pack();
-        f.setLocationRelativeTo(null);
-        f.setVisible(true);
     }
     
     public JMenuBar createMenuBar () {
@@ -223,6 +243,9 @@ public class simpleGui extends javax.swing.JFrame {
             mediaAddress.setText("");
             rowList.repaint();
     	}
+    }
+    public void showGif(){
+    	
     }
     // Variables declaration - do not modify                     
     private javax.swing.JButton addMedia;
